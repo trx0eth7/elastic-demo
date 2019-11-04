@@ -1,0 +1,40 @@
+# Spring Boot configuration
+spring:
+  application:
+    name: elastic demo
+# Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demo?createDatabaseIfNotExist=true
+    username: postgres
+    password: admin
+# JPA properties
+  jpa:
+    database: postgresql
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        format-sql: true
+        jdbc:
+          lob:
+            non-contextual-creation: true
+    hibernate:
+      ddl-auto: create-drop
+
+# Logger configuration
+  logging:
+    level:
+      org.springframewok: INFO
+      org.hibernate: DEBUG
+    pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: app.log
+# Server configuration
+server:
+  port: 8080
+  sessionTimeout: 30
