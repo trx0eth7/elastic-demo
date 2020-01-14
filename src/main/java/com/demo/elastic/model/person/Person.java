@@ -17,7 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,12 +26,13 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "PERSON")
+@Table(name = "DEMO_PERSON")
 @Getter @Setter @NoArgsConstructor
 public class Person implements Serializable {
     private static final long serialVersionUID = 4932375548261992983L;
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 

@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +21,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ELEMENT")
+@Table(name = "DEMO_ELEMENT")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("BE")
 @Getter @Setter @NoArgsConstructor
@@ -31,6 +29,7 @@ public abstract class BaseElement implements Serializable {
     private static final long serialVersionUID = -8021925067977489430L;
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 

@@ -21,11 +21,12 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ORG")
+@Table(name = "DEMO_ORG")
 @Getter @Setter @NoArgsConstructor
 public class Org {
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 

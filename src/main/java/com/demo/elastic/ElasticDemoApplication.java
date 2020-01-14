@@ -1,6 +1,5 @@
 package com.demo.elastic;
 
-import com.demo.elastic.service.DataGeneratorService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,8 +11,7 @@ public class ElasticDemoApplication {
         ConfigurableApplicationContext context =
                 SpringApplication.run(ElasticDemoApplication.class, args);
 
-        DataGeneratorService generatorService = context.getBean(DataGeneratorService.class);
-        generatorService.generateTestData();
+//        DataGeneratorService generatorService = context.getBean(DataGeneratorService.class);
+//        generatorService.generateTestData();
     }
-
 }
