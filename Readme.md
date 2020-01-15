@@ -1,17 +1,25 @@
-# Configure Project
+## Elasticsearch demo project
+If you never hear elasticsearch that this demo shows: how to use external search engine.
 
-### Create Spring Boot project 
+This demo shows:
+- how to create simple spring boot application
+- how to use lombok library
+- how to install elasticsearch on linux (Ubuntu 18.04.3 LTS)
+- how to configure elasticsearch
+- how to use elasticsearch 
+
+### How to create Spring Boot project 
 * here you go to create [spring boot app](https://start.spring.io)
-* use familiar javax inject api, add spec dependency: 
-    `implementation group: 'javax.inject', name: 'javax.inject', version: '1'`
-* run app: `gradlew ass bootRun`    
 * [spring properties](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties)
-* gradle spring config location https://stackoverflow.com/questions/31038250/setting-active-profile-and-config-location-from-command-line-in-spring-boot  
 * configure logback for [slf4j](https://leodev.ru/blog/spring-boot/spring-boot-slf4j/)
+* run app: `./gradlew ass bootRun`    
 
-### Lombok
+### How to use Lombok extension
 * install plugin [lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
 * need to enable Annotation Processor 
  `Settings -> Build -> Compiler` 
-* additional read: https://habr.com/ru/post/438870/ 
+ 
+ ### How to install elasticsearch:
+ * [official documentation](https://www.elastic.co/guide/index.html)
+ * 
 
