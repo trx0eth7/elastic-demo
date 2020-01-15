@@ -23,7 +23,7 @@ spring:
           lob:
             non-contextual-creation: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
 # Logger configuration
   logging:
@@ -38,3 +38,8 @@ spring:
 server:
   port: 8080
   sessionTimeout: 30
+data:
+  generation:
+    entityCount: 1000000
+    rangeDate: 50
+    resPathNameDictionary: "dictionary.txt"

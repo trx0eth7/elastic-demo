@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table
+@Table(name = "DEMO_EDUCATION_ELEMENT")
 @DiscriminatorValue("EE")
 @Getter @Setter @NoArgsConstructor
 public class EducationElement extends BaseElement {

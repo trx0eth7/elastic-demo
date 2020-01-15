@@ -3,6 +3,8 @@ package com.demo.elastic.model.element;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Random;
+
 @Getter
 @AllArgsConstructor
 public enum ElementStateEnum {
@@ -13,5 +15,9 @@ public enum ElementStateEnum {
     ARCHIVE("archive");
 
     private String state;
+
+    public static ElementStateEnum getRandomState(){
+        return values()[new Random().nextInt(values().length)];
+    }
 
 }

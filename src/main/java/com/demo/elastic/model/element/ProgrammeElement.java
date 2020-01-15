@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table
+@Table(name = "DEMO_PROGRAMME_ELEMENT")
 @DiscriminatorValue("PE")
 @Getter @Setter @NoArgsConstructor
 public class ProgrammeElement extends BaseElement {

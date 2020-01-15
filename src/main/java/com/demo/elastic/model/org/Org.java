@@ -14,10 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -39,8 +37,7 @@ public class Org {
     private Integer level = 1;
 
     @Column(name = "REGISTER_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date registerDate;
+    private LocalDate registerDate;
 
     @Embedded
     @AttributeOverrides({

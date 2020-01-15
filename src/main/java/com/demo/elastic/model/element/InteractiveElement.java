@@ -7,17 +7,19 @@ import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
-@Table
+@Table(name = "DEMO_INTERACTIVE_ELEMENT")
 @DiscriminatorValue("IE")
 @Getter @Setter @NoArgsConstructor
 public class InteractiveElement extends BaseElement {
     private static final long serialVersionUID = 2344930073215487874L;
 
-    @OneToMany(mappedBy = "interactiveElement")
-    private List<Person> reviews;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PERSON_ID")
+    private Person reviewer;
 }

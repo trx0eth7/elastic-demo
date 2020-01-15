@@ -11,18 +11,15 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -45,9 +42,8 @@ public class Person implements Serializable {
     private String lastName;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @Column(name = "DATE_OF_BIRTH")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Embedded
     @AttributeOverrides({
@@ -55,8 +51,7 @@ public class Person implements Serializable {
     })
     private Address address;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "INTERACTIVE_ELEMENT_ID")
-    private InteractiveElement interactiveElement;
+    @OneToMany(mappedBy = "reviewer")
+    private List<InteractiveElement> interactiveElement;
 
 }
