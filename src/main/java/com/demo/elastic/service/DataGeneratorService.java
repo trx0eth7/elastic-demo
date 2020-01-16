@@ -6,11 +6,13 @@ import com.demo.elastic.model.area.Address;
 import com.demo.elastic.model.element.BaseElement;
 import com.demo.elastic.model.element.EducationElement;
 import com.demo.elastic.model.element.ElementStateEnum;
+import com.demo.elastic.model.element.ElementTag;
 import com.demo.elastic.model.element.InteractiveElement;
 import com.demo.elastic.model.element.ProgrammeElement;
 import com.demo.elastic.model.org.Org;
 import com.demo.elastic.model.person.Person;
 import com.demo.elastic.repository.BaseElementRepository;
+import com.demo.elastic.repository.ElementTagRepository;
 import com.demo.elastic.repository.OrgRepository;
 import com.demo.elastic.repository.PersonRepository;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import org.springframework.util.StopWatch;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -35,6 +38,8 @@ public class DataGeneratorService {
     private PersonRepository personRepository;
 
     private OrgRepository orgRepository;
+
+    private ElementTagRepository elementTagRepository;
 
     private ResLoaderHelper resLoaderHelper;
 
@@ -50,6 +55,7 @@ public class DataGeneratorService {
         List<Person> people = generatePeople();
         Org org = generateOrg();
         Pair<LocalDate, LocalDate> range = generateRangeDate();
+        List<ElementTag> tags = generateTags();
 
         StopWatch benchmark = new StopWatch();
 
@@ -68,6 +74,16 @@ public class DataGeneratorService {
             element.setZet((double) random.nextInt(150));
             element.setState(ElementStateEnum.getRandomState());
 
+            List<ElementTag> needSaveTags = new ArrayList<>();
+
+            if (Math.random() < 0.2) {
+                int count = random.nextInt(tags.size());
+
+                needSaveTags = tags.subList(0, count);
+
+                element.setElementTags(needSaveTags);
+            }
+
             if (element instanceof EducationElement) {
                 ((EducationElement) element).setOutbound(random.nextInt(2) > 0);
             } else if (element instanceof InteractiveElement) {
@@ -80,12 +96,34 @@ public class DataGeneratorService {
                 ((ProgrammeElement) element).setOrg(org);
             }
 
-            baseElementRepository.save(element);
+            BaseElement saveElement = baseElementRepository.save(element);
+
+            for (ElementTag tag : needSaveTags) {
+                tag.setBaseElements(Collections.singletonList(saveElement));
+                elementTagRepository.save(tag);
+            }
         }
 
         benchmark.stop();
 
         log.info(benchmark.prettyPrint());
+    }
+
+    private List<ElementTag> generateTags() {
+        List<String> names = Arrays.asList("Рекомендовано РАМ", "Рекомендовано Минздрав", "EU");
+
+        List<ElementTag> tags = new ArrayList<>(5);
+
+        for (String name : names) {
+            ElementTag tag = new ElementTag();
+
+            tag.setName(name);
+
+            ElementTag saveTag = elementTagRepository.save(tag);
+            tags.add(saveTag);
+        }
+
+        return tags;
     }
 
     private Org generateOrg() {

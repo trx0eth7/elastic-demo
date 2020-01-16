@@ -52,6 +52,6 @@ public class Person implements Serializable {
     private Address address;
 
     @OneToMany(mappedBy = "reviewer")
-    private List<InteractiveElement> interactiveElement;
+    private List<InteractiveElement> interactiveElements;
 
 }

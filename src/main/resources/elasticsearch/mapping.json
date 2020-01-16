@@ -38,6 +38,9 @@
     },
     "outbound": {
       "type": "boolean"
+    },
+    "tagIds": {
+      "type": "keyword"
     }
   }
 }

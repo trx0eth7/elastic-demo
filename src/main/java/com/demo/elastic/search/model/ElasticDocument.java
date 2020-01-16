@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor @Getter @Setter
@@ -20,6 +21,7 @@ public class ElasticDocument implements Serializable {
     private Double zet;
     private LocalDate beginDate;
     private LocalDate endDate;
+    private List<UUID> tagIds;
 
     //Programme element
     private Long cost;
