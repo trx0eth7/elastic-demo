@@ -24,7 +24,6 @@ import org.springframework.util.StopWatch;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -99,7 +98,10 @@ public class DataGeneratorService {
             BaseElement saveElement = baseElementRepository.save(element);
 
             for (ElementTag tag : needSaveTags) {
-                tag.setBaseElements(Collections.singletonList(saveElement));
+                List<BaseElement> elements = tag.getBaseElements();
+
+                elements.add(saveElement);
+
                 elementTagRepository.save(tag);
             }
         }
