@@ -1,6 +1,7 @@
 package com.demo.elastic.service;
 
-import com.demo.elastic.ElasticDemoApplication;
+import com.demo.elastic.config.DataGenerationConfig;
+import com.demo.elastic.helper.ResLoaderHelper;
 import com.demo.elastic.model.area.Address;
 import com.demo.elastic.model.element.BaseElement;
 import com.demo.elastic.model.element.EducationElement;
@@ -14,22 +15,15 @@ import com.demo.elastic.repository.OrgRepository;
 import com.demo.elastic.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @Slf4j
@@ -42,7 +36,9 @@ public class DataGeneratorService {
 
     private OrgRepository orgRepository;
 
-    private ElasticDemoApplication.DataGenerationConfig dataGenerationConfig;
+    private ResLoaderHelper resLoaderHelper;
+
+    private DataGenerationConfig dataGenerationConfig;
 
     private List<String> dictionaryNames = new ArrayList<>();
 
@@ -148,7 +144,8 @@ public class DataGeneratorService {
 
     private String generateName() {
         if (dictionaryNames.isEmpty()) {
-            dictionaryNames = loadDictionary();
+            dictionaryNames = resLoaderHelper
+                    .loadResFileContentAsList(dataGenerationConfig.getResPathNameDictionary());
         }
 
         int index = new Random().nextInt(dictionaryNames.size());
@@ -191,17 +188,5 @@ public class DataGeneratorService {
         }
 
         return rangeDates;
-    }
-
-    private List<String> loadDictionary() {
-        Resource res = new ClassPathResource(dataGenerationConfig.getResPathNameDictionary());
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(res.getInputStream()))) {
-            dictionaryNames = reader.lines().collect(toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return dictionaryNames;
     }
 }

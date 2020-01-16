@@ -19,7 +19,7 @@ You'll learn more about:
 * need to enable Annotation Processor 
  `Settings -> Build -> Compiler` 
  
- ### How to install elasticsearch:
+ ### How to install elasticsearch
  * [official documentation](https://www.elastic.co/guide/index.html)
  * there are some variants, but here we're going to use the following [ubuntu](https://www.elastic.co/guide/en/elasticsearch/reference/7.5/deb.html):
  * import pgp key: `wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -` 

@@ -8,6 +8,7 @@ plugins {
 group = 'com.demo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+def elasticSearchVersion = '7.5.1'
 
 configurations {
 	compileOnly {
@@ -19,9 +20,16 @@ repositories {
 	mavenCentral()
 }
 
+//resolve downgrade version, see: https://spring.io/blog/2016/04/13/overriding-dependency-versions-with-spring-boot
+ext{
+	set('elasticsearch.version', elasticSearchVersion)
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticSearchVersion"
+	implementation 'com.google.code.gson:gson:2.8.6'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'

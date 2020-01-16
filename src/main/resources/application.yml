@@ -30,6 +30,9 @@ spring:
     level:
       org.springframewok: INFO
       org.hibernate: DEBUG
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type: TRACE
+
     pattern:
       console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
       file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
@@ -38,8 +41,16 @@ spring:
 server:
   port: 8080
   sessionTimeout: 30
-data:
-  generation:
+test:
+  data:
     entityCount: 1000000
     rangeDate: 50
-    resPathNameDictionary: "dictionary.txt"
+    resPathNameDictionary: dictionary.txt
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+  indexName: element
+  resPathSetting: "elasticsearch/settings.json"
+  resPathMapping: "elasticsearch/mapping.json"
+  fetchLimit: 5000

@@ -1,0 +1,43 @@
+{
+  "properties": {
+    "id": {
+      "type": "text",
+      "index": false
+    },
+    "name": {
+      "type": "text"
+    },
+    "type": {
+      "type": "keyword"
+    },
+    "status": {
+      "type": "keyword"
+    },
+    "zet": {
+      "type": "double"
+    },
+    "beginDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd"
+    },
+    "endDate": {
+      "type": "date",
+      "format": "yyyy-MM-dd"
+    },
+    "cost": {
+      "type": "long"
+    },
+    "govCost": {
+      "type": "long"
+    },
+    "orgId": {
+      "type": "keyword"
+    },
+    "reviewerId": {
+      "type": "keyword"
+    },
+    "outbound": {
+      "type": "boolean"
+    }
+  }
+}
